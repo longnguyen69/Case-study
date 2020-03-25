@@ -15,41 +15,85 @@ class Quiz {
 
 function showQuiz(quiz) {
     let str = '';
-    let i = 0;
-    str += "<tr>";
-    str += `<td id="question" colspan="4">${quiz.question}</td>`;
-    str += "</tr>";
+    str += `${quiz.question}`;
+    document.getElementById("question").innerHTML = str; // show cau hoi
 
-    for (i = 0; i <= 3; i++) {
-        str += "<tr>";
-        str += `<td id="${i}" onclick="correct(${i})">${quiz.answer[i]}</td>`;
-        str += "</tr>";
+    let str1 = '';
+    for (let i = 0; i <= 3; i++) {
+        str1 += `<div id='${i}' onclick="correct(${i})" style="display: block; text-align: center; color: white; border-radius: 30px; background-color: brown; height: 50px; border: 1px solid brown; margin-bottom: 10px;">`;
+        str1 += `${quiz.answer[i]}`;
+        str1 += "</div>";
     }
-    document.getElementById("tables").innerHTML = str;
+    document.getElementById("tables").innerHTML = str1; //show cau tra loi
 }
+
 let quiz1 = new Quiz("question 1?", ["abc", "syz", "123", "abc"], 2);
 let quiz2 = new Quiz("hom nay la thu may", ["2", "3", "4", "5"], 3);
 let quiz3 = new Quiz("trua nay an gi", ["tao", "cam", "dua hau", "xoai"], 2);
 
-let arrQuiz = [quiz1,quiz2,quiz3];
+let arrQuiz = [quiz1, quiz2, quiz3];
 let count = 1;
-showQuiz(arrQuiz[count-1]);
+let score = 0;
+showQuiz(arrQuiz[count - 1]);
+
 function correct(id) {
-    if (arrQuiz[count-1].isCorrect(id)) {
+    if (arrQuiz[count - 1].isCorrect(id)) {
         alert("say yes");
         count++;
-        showQuiz(arrQuiz[count-1])
+        score += 1000;
+        document.getElementById("score").innerHTML = "Score: " + score;
+        showQuiz(arrQuiz[count - 1])
+
     } else {
         alert("say no");
     }
 }
 
 // 50:50
-function user5050() {
-let arr = [arrQuiz[count-1].answer[this.correct]];
-let arrAnswer = arrQuiz[count-1].answer.splice(this.correct,1);
-arr.push(arrAnswer[Math.floor(Math.random() * 3)]);
-console.log(arr);
+// function random5050() {
+//     let random1 = Math.floor(Math.random()*4); //random id
+//     let random2 = Math.floor(Math.random()*4); //random id
+//
+//     if (random1 === arrQuiz[count-1].correct){
+//         random1++;
+//     }
+//     if ( random2 === arrQuiz[count-1].correct){
+//         random2++;
+//     }
+//     if (random1 === random2){
+//         random1++;
+//     }
+//     console.log(random1);
+//     console.log(random2);
+//     if (random1 !== arrQuiz[count-1].correct){
+//         document.getElementById(`${random1}`).style.display = "none";
+//     }
+//     if (random2 !== arrQuiz[count-1].correct){
+//         document.getElementById(`"${random2}"`).style.display = "none";
+//     }
+// }
+
+
+
+function divine5050(number) {
+    let exArr = [];
+    for (let i = 0; i < number/2; i++) {
+        let ran = Math.floor(Math.random()*number);
+        if(ran === arrQuiz[count-1].correct || exArr.includes(ran)){
+            i--;
+        }else {
+            exArr.push(ran);
+        }
+    }
+    return exArr;
 }
-user5050();
+
+function disable5050(){
+    let arr = divine5050(4);
+    console.log(arr);
+    for (let i = 0; i < arr.length-1; i++) {
+        $("#arr[i]").prop('disable',true);
+    }
+}
+//console.log(divine5050(20));
 
