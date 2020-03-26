@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+     -->
     <style>
-        body{
+        body {
             background-image: url("ai-la-trieu-phu-600.jpg");
             background-repeat: no-repeat;
             background-size: cover;
         }
-        #question{
+
+        #head {
+            float: left;
+        }
+
+        #question {
             width: 400px;
             height: 200px;
             border: 1px solid brown;
@@ -22,49 +29,55 @@
             color: white;
             margin-top: 200px;
         }
-        #btn{
+
+        #btn {
             float: left;
             width: 540px;
         }
-        img{
+
+        img {
             border-radius: 50%;
             width: 60px;
             height: 60px;
             margin-left: 240px;
         }
-        #tables{
+
+        #tables {
             margin-top: 180px;
             width: 400px;
             float: left;
         }
-        #score{
+
+        #score {
             width: 300px;
             height: 50px;
-            float: left;
             border: 1px solid brown;
             border-radius: 50%;
             background-color: brown;
             text-align: center;
-            margin-left: 50px;
+            margin-left: 45px;
+            margin-top: 450px;
             color: white;
             font-size: 30px;
         }
     </style>
 </head>
-<body>
-<div id="question">
+<body onload="rule()">
+<div id="head">
+    <div id="question">
 
+    </div>
+    <div id="score">
+        Score:
+    </div>
 </div>
 <div id="btn" onclick="disable5050()">
-
     <img src="gg.png" height="225" width="225"/>
 </div>
 <div id="tables">
 
 </div>
-<div id="score">
-    Score:
-</div>
+
 <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
 <script src="quizjs.js"></script>
 </body>

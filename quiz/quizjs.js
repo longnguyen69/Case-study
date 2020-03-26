@@ -12,14 +12,14 @@ class Quiz {
         return false;
     }
 }
-
+let i = 0;
 function showQuiz(quiz) {
     let str = '';
     str += `${quiz.question}`;
     document.getElementById("question").innerHTML = str; // show cau hoi
 
     let str1 = '';
-    for (let i = 0; i <= 3; i++) {
+    for (i = 0; i <= 3; i++) {
         str1 += `<div id='${i}' onclick="correct(${i})" style="display: block; text-align: center; color: white; border-radius: 30px; background-color: brown; height: 50px; border: 1px solid brown; margin-bottom: 10px;">`;
         str1 += `${quiz.answer[i]}`;
         str1 += "</div>";
@@ -33,47 +33,25 @@ let quiz3 = new Quiz("trua nay an gi", ["tao", "cam", "dua hau", "xoai"], 2);
 
 let arrQuiz = [quiz1, quiz2, quiz3];
 let count = 1;
+//let totalScore = 0;
 let score = 0;
 showQuiz(arrQuiz[count - 1]);
 
 function correct(id) {
+
     if (arrQuiz[count - 1].isCorrect(id)) {
-        alert("say yes");
+        alert("Chúc mừng bạn đã trả lời đúng, mời bạn qua câu tiếp theo!");
         count++;
         score += 1000;
+       // totalScore += score;
         document.getElementById("score").innerHTML = "Score: " + score;
         showQuiz(arrQuiz[count - 1])
 
     } else {
-        alert("say no");
+        alert("Oh no, bạn trả lời sai mất rồi :(");
+        alert("Điểm bạn nhận được: "+ score);
     }
 }
-
-// 50:50
-// function random5050() {
-//     let random1 = Math.floor(Math.random()*4); //random id
-//     let random2 = Math.floor(Math.random()*4); //random id
-//
-//     if (random1 === arrQuiz[count-1].correct){
-//         random1++;
-//     }
-//     if ( random2 === arrQuiz[count-1].correct){
-//         random2++;
-//     }
-//     if (random1 === random2){
-//         random1++;
-//     }
-//     console.log(random1);
-//     console.log(random2);
-//     if (random1 !== arrQuiz[count-1].correct){
-//         document.getElementById(`${random1}`).style.display = "none";
-//     }
-//     if (random2 !== arrQuiz[count-1].correct){
-//         document.getElementById(`"${random2}"`).style.display = "none";
-//     }
-// }
-
-
 
 function divine5050(number) {
     let exArr = [];
@@ -91,9 +69,23 @@ function divine5050(number) {
 function disable5050(){
     let arr = divine5050(4);
     console.log(arr);
-    for (let i = 0; i < arr.length-1; i++) {
-        $("#arr[i]").prop('disable',true);
+    for (let j = 0; j < arr.length; j++) {
+                // $("#arr[j]").hide();
+        console.log(arr[j]);
+        document.getElementById(arr[j].toString()).style.display = "none";
+
+       document.getElementById("btn").disabled = true;
+       // document.getElementById(arr[j].toString()).disabled = true;
+      // $("#arr[i]").prop('disable',true);
+
     }
 }
 //console.log(divine5050(20));
-
+function rule() {
+    alert("Luật chơi: " +
+        "Người chơi phải trả lời 10 câu hỏi với cấp độ từ dễ đến khó, " +
+        "thời gian suy nghĩ không hạn chế. Quan trọng bạn phải biết search. Mỗi câu hỏi có một mức tiền thưởng, " +
+        "tăng dần theo thứ tự. Có hai mốc quan trọng là câu số 5 và câu số 10 " +
+        "(mốc \"TỶ PHÚ\"). Khi vượt qua các mốc này, bạn sẽ có được số tiền thưởng tương" +
+        " ứng của các câu hỏi đó. "+"Bạn đã sẵn sàng để chơi với chúng tôi?")
+}
