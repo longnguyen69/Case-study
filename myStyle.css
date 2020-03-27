@@ -72,7 +72,9 @@ img#imgBtn {
     margin-left: 120px;
     margin-top: 50px;
     border: 1px solid cyan;
-    background-image: url("2-1440133142840.gif");
+    background-image: url("animated-gifs-corporate-training.gif");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
     border-radius: 5px;
     text-align: center;
 }
@@ -81,5 +83,14 @@ ul{
 }
 ul,li{
     list-style: none;
-
+    color: #ed1123;
+}
+button{
+    border-radius: 5px;
+    width: 100px;
+    height: 30px;
+}
+button:hover{
+    color: #f56642;
+    background-color: cyan;
 }
