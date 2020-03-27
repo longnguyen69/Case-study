@@ -22,10 +22,10 @@ function showQuiz(quiz) {
 
     let str1 = '';
     for (i = 0; i <= 3; i++) {
-        str1 += `<div id='${i}' onclick="checkCorrect(${i})" style="display: block; text-align: center; color: white; 
+        str1 += `<button id='${i}' onclick="checkCorrect(${i})" style="display: block; text-align: center; color: white; 
 border-radius: 30px; font-size: 20px; height: 50px; border: 1px solid cyan; padding-top: 10px; margin-bottom: 10px;">`;
         str1 += `${quiz.answer[i]}`;
-        str1 += "</div>";
+        str1 += "</button>";
     }
     document.getElementById("tables").innerHTML = str1; //show cau tra loi
 }
@@ -172,7 +172,7 @@ function hideMess() {
 function play() {
     let audio = new Audio('AiLaTrieuPhu-VA_43vp2.mp3');
     audio.play();
-    audio.loop = true;
+    // audio.loop = true;
     // audio.load();
 }
 

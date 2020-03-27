@@ -86,11 +86,23 @@ ul,li{
     color: #ed1123;
 }
 button{
-    border-radius: 5px;
+    width: 350px;
+    background-color: chocolate;
+    margin: 0 auto;
+}
+button#read{
     width: 100px;
-    height: 30px;
+    background-color: cornflowerblue;
+    border-radius: 7px;
+}
+button#read:hover{
+    color: red;
+    background-color: cyan;
+    width: 150px;
+    height: 50px;
 }
 button:hover{
     color: #f56642;
     background-color: cyan;
+    width: 400px;
 }
