@@ -1,3 +1,9 @@
+/*
+Game "Ai là triệu phú"
+ Design by Nguyen Thanh Long
+ C0220H2
+*/
+// tạo lớp câu hỏi và đáp án
 class Quiz {
     constructor(question, answer, correct) {
         this.question = question;
@@ -12,9 +18,8 @@ class Quiz {
         return false;
     }
 }
-
+// hiện form chứa thông tin câu hỏi và câu trả lời
 let i = 0;
-
 function showQuiz(quiz) {
     let str = '';
     str += `${quiz.question}`;
@@ -29,7 +34,7 @@ border-radius: 30px; font-size: 20px; height: 50px; border: 1px solid cyan; padd
     }
     document.getElementById("tables").innerHTML = str1; //show cau tra loi
 }
-
+// tạo ra mảng chứa các câu hỏi và đáp án trò chơi
 let quiz1 = new Quiz("Câu 1: Hình nộm người đứng ở cánh đồng mà nông dân dựng lên được gọi là gi?", ["A: Bù xù", "B: Bù nhìn", "C: Bù đầu", "D: Bù trừ"], 1);
 let quiz2 = new Quiz("Câu 2: Cầu thủ nào ở đội tuyển Bra-xin được mệnh danh là Pê-lê trắng?", ["A: Zico", "B: Ronaldo", "C: Romario", "D: Ronaldinho"], 0);
 let quiz3 = new Quiz("Câu 3: Từ nào dùng để chỉ người phụ nữ đẹp?", ["A: Giai điệu", "B: Giai nhân", "C: Giai đoạn", "D: Giai cấp"], 1);
@@ -44,8 +49,11 @@ let quiz10 = new Quiz("Câu 10: Theo một câu ca dao xưa thì \"Một chục 
 let arrQuiz = [quiz1, quiz2, quiz3, quiz4, quiz5, quiz6, quiz7, quiz8, quiz9, quiz10];
 let count = 1;
 let score = 0;
+//hiển thị câu hỏi đầu tiên
 showQuiz(arrQuiz[count - 1]);
 
+// check đáp án đúng và hiện câu hỏi tiếp theo
+// check đáp án đúng
 function correct(id) {
     let currItem = document.getElementById(id);
     if (currItem.disabled)
@@ -56,7 +64,7 @@ function correct(id) {
         return false;
     }
 }
-
+// hiện câu hỏi tiếp theo hoặc trả về câu hỏi ban đầu
 function checkCorrect(id) {
     if (correct(id)) {
         alert("Chúc mừng bạn đã trả lời đúng, mời bạn qua câu tiếp theo!");
@@ -68,13 +76,14 @@ function checkCorrect(id) {
     } else {
         alert("Oh no, bạn trả lời sai mất rồi");
         alert("Điểm bạn nhận được: " + score);
+        play(0);
         count = 1;
         score = 0;
         document.getElementById("score").innerHTML = "Score: " + score;
         showQuiz(arrQuiz[count - 1]);
     }
 }
-
+// check khi bạn trả lời hết các câu hỏi
 function checkWin() {
     if (score === 10000) {
         alert("Xin chúc mừng bạn là người chiến thắng, số tiền bạn nhận được sau phần chơi là: 10.000.000 đồng");
@@ -87,15 +96,8 @@ function checkWin() {
         }
     }
 }
-
-// function callBack() {
-//     if (checkWin() === true ){
-//         count = 1;
-//         score = 0;
-//         showQuiz(arrQuiz[count - 1]);
-//     }
-// }
-// callBack();
+// trợ giúp 50/50
+//tạo ra mảng chứa 2/3 phương án sai ngẫu nhiên
 function divine5050(number) {
     let exArr = [];
     for (let i = 0; i < number / 2; i++) {
@@ -108,7 +110,7 @@ function divine5050(number) {
     }
     return exArr;
 }
-
+// loại bỏ hai phương án sai khỏi đáp án
 function disable5050() {
     let arr = divine5050(4);
     for (let j = 0; j < arr.length; j++) {
@@ -120,7 +122,7 @@ function disable5050() {
 }
 
 //hoi y kien laptop
-function initHelpComputer() {
+function initHelpComputer() { //tạo ra ngẫu nhiên sự trợ giúp các đáp án
     //random id 0
     let a = Math.floor(Math.random() * 101);
     let b = Math.floor(Math.random() * 101);
@@ -135,45 +137,30 @@ function initHelpComputer() {
     }
     return arrHelp;
 }
-
+// hiển thị sự lựa chọn các đáp án
 function showHelp() {
     let arrShow = initHelpComputer();
     document.getElementById("help").src = "gachcheo.png";
     alert('trợ giúp của khán giả: ' + arrShow[0] + '% chọn A, ' + arrShow[1] + '% chọn B,' + arrShow[2] + '% chọn C,' + arrShow[3] + '% chọn D');
 }
-
-// function checkWin() {
-//     let idQuiz = arrQuiz[arrQuiz.length - 1].correct;
-//     if (arrQuiz[arrQuiz.length - 1].isCorrect(idQuiz)){
-//         alert('Bạn đã trả lời hết các câu hỏi!');
-//         confirm('Bạn có muốn chơi lại không');
-//         if (confirm(true)){
-//             count = 1;
-//             score = 0;
-//             showQuiz(arrQuiz[count - 1]);
-//         }
-//     }
-// }
-
-
-// function rule() {
-//     alert("Luật chơi: " +
-//         "Người chơi phải trả lời 10 câu hỏi với cấp độ từ dễ đến khó, " +
-//         "thời gian suy nghĩ không hạn chế. Quan trọng bạn phải biết search. Mỗi câu hỏi có một mức tiền thưởng, " +
-//         "tăng dần theo thứ tự. Có hai mốc quan trọng là câu số 5 và câu số 10 " +
-//         "(mốc \"TỶ PHÚ\"). Khi vượt qua các mốc này, bạn sẽ có được số tiền thưởng tương" +
-//         " ứng của các câu hỏi đó. Bạn sẽ nhận được hai sự trợ giúp là 50/50 và hỏi ý kiến laptop. " + "Bạn đã sẵn sàng để chơi với chúng tôi?")
-// }
+// ẩn hộp thoại hướng dẫn chơi
 function hideMess() {
     document.getElementById('log').style.display = 'none';
-    play();
+    play(1);
 }
-
-function play() {
+//chơi nhạc
+function play(tt) {
     let audio = new Audio('AiLaTrieuPhu-VA_43vp2.mp3');
-    audio.play();
-    // audio.loop = true;
-    // audio.load();
+
+    switch (tt) {
+        case 1: audio.play();
+        break;
+        case 0: audio.pause();
+        break;
+    }
+    // audio.play();
+    // audio.loop();
+
 }
 
 

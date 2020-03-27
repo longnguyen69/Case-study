@@ -84,6 +84,7 @@ ul{
 ul,li{
     list-style: none;
     color: #ed1123;
+    font-size: 25px;
 }
 button{
     width: 350px;
@@ -105,4 +106,5 @@ button:hover{
     color: #f56642;
     background-color: cyan;
     width: 400px;
+    font-size: 30px;
 }
