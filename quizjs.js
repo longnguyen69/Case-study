@@ -170,10 +170,10 @@ function hideMess() {
 }
 
 function play() {
-
     let audio = new Audio('AiLaTrieuPhu-VA_43vp2.mp3');
     audio.play();
-    audio.loop;
+    audio.loop = true;
+    // audio.load();
 }
 
 
